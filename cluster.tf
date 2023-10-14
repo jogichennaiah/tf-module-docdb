@@ -6,7 +6,7 @@ resource "aws_docdb_cluster" "docdb" {
   preferred_backup_window = "07:00-09:00"
   skip_final_snapshot     = true                       # in a production value will be false
   db_subnet_group_name    = aws_docdb_subnet_group.docdb.name
-
+  vpc_security_group_ids  = [aws_security_group.allows.docdb.id]
 }
 
 # Creates DOCDB Instances and adds to the cluster
