@@ -7,7 +7,7 @@ resource "aws_security_group" "allows_docdb" {
 
 
   ingress {
-    description      = "SSH from Public Network"
+    description      = "docdb from Public Network"
     from_port        = 27017
     to_port          = 27017
     protocol         = "tcp"
@@ -23,6 +23,6 @@ resource "aws_security_group" "allows_docdb" {
   }
 
   tags = {
-    Name = "allows_public_ssh"
+    Name = "roboshop-${var.ENV}-docdb-sg"
   }
 }
