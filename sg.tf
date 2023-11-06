@@ -1,13 +1,12 @@
-# Creating security group
-
+# Creates Security Group
 resource "aws_security_group" "allows_docdb" {
   name        = "Roboshop allows docdb internal traffic only"
-  description = "Allows only private traffic"
-  vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_CIDR
+  description = "Allows Only private traffic"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
 
   ingress {
-    description      = "docdb from Public Network"
+    description      = "docdb from private Network"
     from_port        = var.DOCDB_INSTANCE_PORT
     to_port          = var.DOCDB_INSTANCE_PORT
     protocol         = "tcp"
@@ -23,6 +22,6 @@ resource "aws_security_group" "allows_docdb" {
   }
 
   tags = {
-    Name = "roboshop-${var.ENV}-docdb-sg"
+    Name = "allows_private_traffic"
   }
 }
